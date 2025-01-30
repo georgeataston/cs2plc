@@ -3,12 +3,13 @@ module Intro2 where
 -- String algebra:
 name = "Alice"
 -- "if" has a special syntax but otherwise a typed version of Lisp's "if":
-name2 = if name /= "" then name else "no name"
+name2 = if name /= "" then name else "no name" -- so assuming /= is !=
 
 pname3 = print "Bob"
 
 myprogram = print (1 + m)  -- compiler error: m undefined
 m = 1                      -- unless this line is also present
+-- whacky that order doesn't matter?
 
 -- sequencing several imperative programs:
 prg1 = do

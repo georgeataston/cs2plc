@@ -34,16 +34,31 @@ function error2Result(err){
 
 }
 
-console.log('Error list: ', Object.values(Error_enumobj));
+function result2Error(result) {
+	switch (result) {
+		case Result_enumobj.A_BIT_DIFFERENT:
+			return Error_enumobj.FP_ROUNDING;
+		case Result_enumobj.INFINITY:
+			return Error_enumobj.FP_OVERFLOW;
+		case Result_enumobj.ZERO:
+			return Error_enumobj.FP_UNDERFLOW;
+		case Result_enumobj.VERY_DIFFERENT:
+			return Error_enumobj.INT_OVERFLOW;
+		default:
+			return 'Invalid Result value';		
+	}
+}
+
+console.log('Result list: ', Object.values(Result_enumobj));
 var validArg = false;
 while(!validArg){
     var input = prompt("Input: ");
-    let result = error2Result(input);
-    if (Object.values(Result_enumobj).includes(result)){
+    let error = result2Error(input);
+    if (Object.values(Error_enumobj).includes(error)){
         validArg = true;
-		console.log(input + " results in " + error2Result(input));
+		console.log(input + " results in " + error);
     }
     else{
-        console.log(result);
+        console.log(error);
     }
 }
